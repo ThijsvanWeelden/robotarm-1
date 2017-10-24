@@ -1,0 +1,31 @@
+<html>
+    <body>
+        <canvas id="canvas" width="800" height="600"></canvas>
+        <script src="./robot-arm.js"></script>
+        <script>
+            // Robotarm bibliotheek inladen
+            var canvas = document.getElementById("canvas");
+            var robotArm = new RobotArm(canvas);
+		      	function moveRight(Nr){//Move to the right, and release the box. Prerequired that the box is picked up.
+		    		for (var moveRight = 0; moveRight < Nr; moveRight++) {
+	    			robotArm.moveRight (); }
+            robotArm.drop();}
+            
+			      function moveLeft(Nr){//Move to the left and pickup box
+            for (var moveLeft = 0; moveLeft < Nr; moveLeft++) {
+            robotArm.moveLeft();    }
+            robotArm.grab();}
+            // Het level inladen
+            robotArm.loadLevel("exercise 10");
+            // Jou instructies volgen hier
+      			robotArm.grab(); //First time Grab
+      			for(var move = 9; move > 0; move--){
+      			if(move == 9 || move == 7 || move == 5 || move == 3 || move == 1)
+      			moveRight(move)
+      			if(move == 8 || move == 6 || move == 4 || move == 2)
+      			moveLeft(move) }
+            // De door jou opgegeven instructies uitvoeren
+            robotArm.run();
+        </script>
+    </body>
+</html>
